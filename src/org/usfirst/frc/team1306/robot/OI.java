@@ -1,7 +1,11 @@
 package org.usfirst.frc.team1306.robot;
 
+import org.usfirst.frc.team1306.robot.commands.elevator.SnapDown;
+import org.usfirst.frc.team1306.robot.commands.elevator.SnapUp;
+
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
-import org.usfirst.frc.team1306.robot.commands.ExampleCommand;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -36,9 +40,40 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 
+	private static final double DEADBAND = 0.15;
+
 	private final XboxController xbox;
+	
+	private final Button rightBumper, leftBumper;
 
 	public OI() {
 		xbox = new XboxController(0);
+		
+		rightBumper = new JoystickButton(xbox, XboxController.RB);
+		leftBumper = new JoystickButton(xbox, XboxController.LB);
+		
+		rightBumper.whenPressed(new SnapUp());
+		leftBumper.whenPressed(new SnapDown());
+	}
+
+	public double elevatorDir() {
+		return xbox.getRT() - xbox.getLT();
+	}
+	
+	/**
+	 * Returns the input rounded to zero within the pre-specified deadband.
+	 * 
+	 * @param value
+	 *            Initial value to be rounded
+	 * @return Rounded value
+	 */
+	private double deadband(double original) {
+		if (original < -DEADBAND) {
+			return (original + DEADBAND) / (1.0 - DEADBAND);
+		} else if (original > DEADBAND) {
+			return (original - DEADBAND) / (1.0 - DEADBAND);
+		} else {
+			return 0.0;
+		}
 	}
 }
