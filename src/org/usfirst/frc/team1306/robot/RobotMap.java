@@ -62,7 +62,7 @@ public class RobotMap {
 
 	// Operator Interface
 	public static OI oi;
-	
+
 	public static Elevator elevator;
 
 	static void init() {
@@ -79,8 +79,7 @@ public class RobotMap {
 		DRIVE_FRONT_RIGHT = new Talon(0);
 		DRIVE_REAR_RIGHT = new Talon(2);
 
-		DRIVETRAIN = new RobotDrive(DRIVE_FRONT_LEFT, DRIVE_REAR_LEFT,
-				DRIVE_FRONT_RIGHT, DRIVE_REAR_RIGHT);
+		DRIVETRAIN = new RobotDrive(DRIVE_FRONT_LEFT, DRIVE_REAR_LEFT, DRIVE_FRONT_RIGHT, DRIVE_REAR_RIGHT);
 		DRIVETRAIN.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, false);
 		DRIVETRAIN.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
 		DRIVETRAIN.setInvertedMotor(RobotDrive.MotorType.kRearLeft, false);
@@ -102,7 +101,7 @@ public class RobotMap {
 		GRABBER_MOTOR = new CanTalonSRX(0);
 
 		oi = new OI();
-		
+
 		elevator = new Elevator();
 	}
 }
