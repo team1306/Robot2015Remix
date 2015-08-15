@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1306.robot;
 
+import org.usfirst.frc.team1306.robot.subsystems.Elevator;
+
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -60,6 +62,8 @@ public class RobotMap {
 
 	// Operator Interface
 	public static OI oi;
+	
+	public static Elevator elevator;
 
 	static void init() {
 		/*
@@ -97,8 +101,8 @@ public class RobotMap {
 
 		GRABBER_MOTOR = new CanTalonSRX(0);
 
-
 		oi = new OI();
-
+		
+		elevator = new Elevator();
 	}
 }
