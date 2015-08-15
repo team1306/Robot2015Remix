@@ -1,6 +1,9 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
+import org.usfirst.frc.team1306.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -9,10 +12,16 @@ public class Elevator extends PIDSubsystem {
 
     // Initialize your subsystem here
     public Elevator() {
-        // Use these to get going:
-        // setSetpoint() -  Sets where the PID controller should move the system
-        //                  to
-        // enable() - Enables the PID controller.
+    	super("Elevator", 0.002, 0.0, 0.0);
+
+		getPIDController().setContinuous(false);
+		setInputRange(0.0, 18000.0); // range of encoder values
+		setOutputRange(-1.0, 1.0); // range of motor speeds
+		setAbsoluteTolerance(100.0); // tolerance in encoder ticks
+		
+		SmartDashboard.putData("Elevator PID", getPIDController());
+
+		RobotMap.ELEVATOR_MOTOR.setSafetyEnabled(false);
     }
     
     public void initDefaultCommand() {
