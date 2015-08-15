@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Elevator extends PIDSubsystem {
 
-    // Initialize your subsystem here
-    public Elevator() {
-    	super("Elevator", 0.002, 0.0, 0.0);
+	// Initialize your subsystem here
+	public Elevator() {
+		super("Elevator", 0.002, 0.0, 0.0);
 
 		getPIDController().setContinuous(false);
 		setInputRange(0.0, 18000.0); // range of encoder values
