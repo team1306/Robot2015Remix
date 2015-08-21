@@ -38,7 +38,7 @@ public class RunElevator extends Command {
 
 		RobotMap.elevator.drive(oi.elevatorDir());
 
-		height = RobotMap.ELEVATOR_ENCODER.getDistance();
+		height = RobotMap.elevator.getPoint();
 		String level;
 		if (height < Elevator.Level.ZERO.getHeight() - TOLERANCE) {
 			level = "<0";

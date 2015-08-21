@@ -52,7 +52,7 @@ public class Elevator extends PIDSubsystem {
 		// Return your input value for the PID loop
 		// e.g. a sensor, like a potentiometer:
 		// yourPot.getAverageVoltage() / kYourMaxVoltage;
-		return RobotMap.ELEVATOR_ENCODER.get();
+		return getPoint();
 	}
 
 	protected void usePIDOutput(double output) {
@@ -105,8 +105,8 @@ public class Elevator extends PIDSubsystem {
 	 * 
 	 * @return elevator's position
 	 */
-	public int getPoint() {
-		return RobotMap.ELEVATOR_ENCODER.get();
+	public double getPoint() {
+		return RobotMap.ELEVATOR_ENCODER.getDistance();
 	}
 
 	/**
