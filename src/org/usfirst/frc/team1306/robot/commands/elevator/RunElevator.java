@@ -28,7 +28,7 @@ public class RunElevator extends Command {
 	 * This method is called just before this Command runs the first time.
 	 */
 	protected void initialize() {
-		
+
 	}
 
 	/**
@@ -38,28 +38,34 @@ public class RunElevator extends Command {
 
 		RobotMap.elevator.drive(oi.elevatorDir());
 
-		height = RobotMap.ELEVATOR_ENCODER.get();
-		if (height == Elevator.Level.ZERO.getHeight())
-			SmartDashboard.putString("Level", "0");
-		else if (height < Elevator.Level.ONE.getHeight())
-			SmartDashboard.putString("Level", "0-1");
-		else if (height == Elevator.Level.ONE.getHeight())
-			SmartDashboard.putString("Level", "1");
-		else if (height < Elevator.Level.TWO.getHeight())
-			SmartDashboard.putString("Level", "1-2");
-		else if (height == Elevator.Level.TWO.getHeight())
-			SmartDashboard.putString("Level", "2");
-		else if (height < Elevator.Level.THREE.getHeight())
-			SmartDashboard.putString("Level", "2-3");
-		else if (height == Elevator.Level.THREE.getHeight())
-			SmartDashboard.putString("Level", "3");
-		else
-			SmartDashboard.putString("Level", "N/A");
+		height = RobotMap.elevator.getPoint();
+		String level;
+		if (height < Elevator.Level.ZERO.getHeight() - Elevator.TOLERANCE) {
+			level = "<0";
+		} else if (height < Elevator.Level.ZERO.getHeight() + Elevator.TOLERANCE){
+			level = "0";
+		} else if (height < Elevator.Level.ONE.getHeight() - Elevator.TOLERANCE) {
+			level = "0-1";
+		} else if (height < Elevator.Level.ONE.getHeight() + Elevator.TOLERANCE) {
+			level = "1";
+		} else if (height < Elevator.Level.TWO.getHeight() - Elevator.TOLERANCE) {
+			level = "1-2";
+		} else if (height < Elevator.Level.TWO.getHeight() + Elevator.TOLERANCE) {
+			level = "2";
+		} else if (height < Elevator.Level.THREE.getHeight() - Elevator.TOLERANCE) {
+			level = "2-3";
+		} else if (height < Elevator.Level.THREE.getHeight() + Elevator.TOLERANCE) {
+			level = "3";
+		} else {
+			level = ">3";
+		}
+		SmartDashboard.putString("Level", level);
 
 	}
 
 	/**
-	 * This method returns true when this Command no longer needs to run execute().
+	 * This method returns true when this Command no longer needs to run
+	 * execute().
 	 */
 	protected boolean isFinished() {
 		return false;
@@ -73,8 +79,8 @@ public class RunElevator extends Command {
 	}
 
 	/**
-	 * This method called when another command which requires one or more of the same
-	 * subsystems is scheduled to run
+	 * This method called when another command which requires one or more of the
+	 * same subsystems is scheduled to run
 	 */
 	protected void interrupted() {
 		end();

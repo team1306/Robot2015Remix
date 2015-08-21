@@ -33,7 +33,7 @@ public class SnapDown extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return RobotMap.elevator.onTarget();
+        return RobotMap.elevator.onTarget() && RobotMap.elevator.isStopped();
     }
 
     // Called once after isFinished returns true

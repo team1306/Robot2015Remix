@@ -35,11 +35,11 @@ public class Elevator extends PIDSubsystem {
 		getPIDController().setContinuous(false);
 		setInputRange(0.0, 18000.0); // range of encoder values
 		setOutputRange(-1.0, 1.0); // range of motor speeds
-		setAbsoluteTolerance(100.0); // tolerance in encoder ticks
+		setAbsoluteTolerance(TOLERANCE); // tolerance in encoder ticks
 
 		SmartDashboard.putData("Elevator PID", getPIDController());
 
-		RobotMap.ELEVATOR_MOTOR.setSafetyEnabled(false);
+		RobotMap.elevatorMotor.setSafetyEnabled(false);
 	}
 
 	public void initDefaultCommand() {
@@ -52,7 +52,7 @@ public class Elevator extends PIDSubsystem {
 		// Return your input value for the PID loop
 		// e.g. a sensor, like a potentiometer:
 		// yourPot.getAverageVoltage() / kYourMaxVoltage;
-		return RobotMap.ELEVATOR_ENCODER.get();
+		return getPoint();
 	}
 
 	protected void usePIDOutput(double output) {
@@ -61,7 +61,7 @@ public class Elevator extends PIDSubsystem {
 		if (hitTop() && output > 0.0 || hitBottom() && output < 0.0) {
 			output = 0.0;
 		}
-		RobotMap.ELEVATOR_MOTOR.set(-output);
+		RobotMap.elevatorMotor.set(-output);
 	}
 	
 	public void goTo(Level level) {
@@ -90,7 +90,7 @@ public class Elevator extends PIDSubsystem {
 			setSetpoint(getPoint());
 			
 			if (!(hitTop() && speed > 0 || hitBottom() && speed < 0))
-				RobotMap.ELEVATOR_MOTOR.set(-speed);
+				RobotMap.elevatorMotor.set(-speed);
 		}
 		SmartDashboard.putBoolean("Hit Top", hitTop());
 		SmartDashboard.putBoolean("Hit Bottom", hitBottom());
@@ -105,8 +105,8 @@ public class Elevator extends PIDSubsystem {
 	 * 
 	 * @return elevator's position
 	 */
-	public int getPoint() {
-		return RobotMap.ELEVATOR_ENCODER.get();
+	public double getPoint() {
+		return RobotMap.elevatorEncoder.getDistance();
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class Elevator extends PIDSubsystem {
 	 * @return true if at upper limit
 	 */
 	public boolean hitTop() {
-		return !RobotMap.ELEVATOR_TOP_LIMIT.get();
+		return !RobotMap.elevatorTopLimit.get();
 	}
 
 	/**
@@ -124,10 +124,19 @@ public class Elevator extends PIDSubsystem {
 	 * @return true if at bottom limit
 	 */
 	public boolean hitBottom() {
-		boolean hit = !RobotMap.ELEVATOR_BOTTOM_LIMIT.get();
+		boolean hit = !RobotMap.elevatorBottomLimit.get();
 		if (hit) {
-			RobotMap.ELEVATOR_ENCODER.reset();
+			RobotMap.elevatorEncoder.reset();
 		}
 		return hit;
 	}
+	
+	public boolean isStopped() {
+		return Math.abs(RobotMap.elevatorEncoder.getRate()) < SPEED_TOLERANCE;
+	}
+	
+	//The maximum distance (in mm) that the encoder can be from its target and still be considered on target
+	public static final double TOLERANCE = 5.0;
+	//The maximum speed the elevator can be moving (in mm/s) and still be considered stopped
+	private static final double SPEED_TOLERANCE = 5.0;
 }
