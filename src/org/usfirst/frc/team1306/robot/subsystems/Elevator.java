@@ -39,7 +39,7 @@ public class Elevator extends PIDSubsystem {
 
 		SmartDashboard.putData("Elevator PID", getPIDController());
 
-		RobotMap.ELEVATOR_MOTOR.setSafetyEnabled(false);
+		RobotMap.elevatorMotor.setSafetyEnabled(false);
 	}
 
 	public void initDefaultCommand() {
@@ -61,7 +61,7 @@ public class Elevator extends PIDSubsystem {
 		if (hitTop() && output > 0.0 || hitBottom() && output < 0.0) {
 			output = 0.0;
 		}
-		RobotMap.ELEVATOR_MOTOR.set(-output);
+		RobotMap.elevatorMotor.set(-output);
 	}
 	
 	public void goTo(Level level) {
@@ -90,7 +90,7 @@ public class Elevator extends PIDSubsystem {
 			setSetpoint(getPoint());
 			
 			if (!(hitTop() && speed > 0 || hitBottom() && speed < 0))
-				RobotMap.ELEVATOR_MOTOR.set(-speed);
+				RobotMap.elevatorMotor.set(-speed);
 		}
 		SmartDashboard.putBoolean("Hit Top", hitTop());
 		SmartDashboard.putBoolean("Hit Bottom", hitBottom());
@@ -106,7 +106,7 @@ public class Elevator extends PIDSubsystem {
 	 * @return elevator's position
 	 */
 	public double getPoint() {
-		return RobotMap.ELEVATOR_ENCODER.getDistance();
+		return RobotMap.elevatorEncoder.getDistance();
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class Elevator extends PIDSubsystem {
 	 * @return true if at upper limit
 	 */
 	public boolean hitTop() {
-		return !RobotMap.ELEVATOR_TOP_LIMIT.get();
+		return !RobotMap.elevatorTopLimit.get();
 	}
 
 	/**
@@ -124,15 +124,15 @@ public class Elevator extends PIDSubsystem {
 	 * @return true if at bottom limit
 	 */
 	public boolean hitBottom() {
-		boolean hit = !RobotMap.ELEVATOR_BOTTOM_LIMIT.get();
+		boolean hit = !RobotMap.elevatorBottomLimit.get();
 		if (hit) {
-			RobotMap.ELEVATOR_ENCODER.reset();
+			RobotMap.elevatorEncoder.reset();
 		}
 		return hit;
 	}
 	
 	public boolean isStopped() {
-		return Math.abs(RobotMap.ELEVATOR_ENCODER.getRate()) < SPEED_TOLERANCE;
+		return Math.abs(RobotMap.elevatorEncoder.getRate()) < SPEED_TOLERANCE;
 	}
 	
 	//The maximum distance (in mm) that the encoder can be from its target and still be considered on target

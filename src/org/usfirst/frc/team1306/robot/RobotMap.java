@@ -33,32 +33,32 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 
 	// Drive train motors
-	public static SpeedController DRIVE_FRONT_LEFT;
-	public static SpeedController DRIVE_REAR_LEFT;
-	public static SpeedController DRIVE_FRONT_RIGHT;
-	public static SpeedController DRIVE_REAR_RIGHT;
+	public static SpeedController driveFrontLeft;
+	public static SpeedController driveRearLeft;
+	public static SpeedController driveFrontRight;
+	public static SpeedController driveRearRight;
 
-	public static RobotDrive DRIVETRAIN;
+	public static RobotDrive drivetrain;
 
-	public static Relay LIGHTS;
+	public static Relay lights;
 
 	// Misc inputs
-	public static DigitalInput ELEVATOR_BOTTOM_LIMIT;
-	public static DigitalInput ELEVATOR_TOP_LIMIT;
-	public static DigitalInput TOTE_SWITCH;
-	public static Gyro GYRO;
-	public static Accelerometer ACCEL;
-	public static AnalogInput SONIC;
-	public static Encoder DRIVE_FRONT_LEFT_ENCODER;
-	public static Encoder DRIVE_REAR_LEFT_ENCODER;
-	public static Encoder DRIVE_FRONT_RIGHT_ENCODER;
-	public static Encoder DRIVE_REAR_RIGHT_ENCODER;
+	public static DigitalInput elevatorBottomLimit;
+	public static DigitalInput elevatorTopLimit;
+	public static DigitalInput toteSwitch;
+	public static Gyro gyro;
+	public static Accelerometer accelerometer;
+	public static AnalogInput rangeFinder;
+	public static Encoder driveFrontLeftEncoder;
+	public static Encoder driveRearLeftEncoder;
+	public static Encoder driveFrontRightEncoder;
+	public static Encoder driveRearRightEncoder;
 
 	// Manipulator actuators
-	public static Talon ELEVATOR_MOTOR;
-	public static Encoder ELEVATOR_ENCODER;
-	public static CanTalonSRX GRABBER_MOTOR;
-	public static Encoder GRABBER_ENCODER;
+	public static Talon elevatorMotor;
+	public static Encoder elevatorEncoder;
+	public static CanTalonSRX grabberMotor;
+	public static Encoder grabberEncoder;
 
 	// Operator Interface
 	public static OI oi;
@@ -74,31 +74,31 @@ public class RobotMap {
 		 * new PIDMotor(new Talon(3), DRIVE_REAR_RIGHT_ENCODER);
 		 */
 
-		DRIVE_FRONT_LEFT = new Talon(1);
-		DRIVE_REAR_LEFT = new Talon(3);
-		DRIVE_FRONT_RIGHT = new Talon(0);
-		DRIVE_REAR_RIGHT = new Talon(2);
+		driveFrontLeft = new Talon(1);
+		driveRearLeft = new Talon(3);
+		driveFrontRight = new Talon(0);
+		driveRearRight = new Talon(2);
 
-		DRIVETRAIN = new RobotDrive(DRIVE_FRONT_LEFT, DRIVE_REAR_LEFT, DRIVE_FRONT_RIGHT, DRIVE_REAR_RIGHT);
-		DRIVETRAIN.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, false);
-		DRIVETRAIN.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-		DRIVETRAIN.setInvertedMotor(RobotDrive.MotorType.kRearLeft, false);
-		DRIVETRAIN.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		drivetrain = new RobotDrive(driveFrontLeft, driveRearLeft, driveFrontRight, driveRearRight);
+		drivetrain.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, false);
+		drivetrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+		drivetrain.setInvertedMotor(RobotDrive.MotorType.kRearLeft, false);
+		drivetrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 
-		LIGHTS = new Relay(0);
-		LIGHTS.set(Value.kForward);
+		lights = new Relay(0);
+		lights.set(Value.kForward);
 
-		ELEVATOR_BOTTOM_LIMIT = new DigitalInput(1);
-		ELEVATOR_TOP_LIMIT = new DigitalInput(0);
-		TOTE_SWITCH = new DigitalInput(2);
-		GYRO = new Gyro(0);
-		ACCEL = new BuiltInAccelerometer();
-		SONIC = new AnalogInput(1);
+		elevatorBottomLimit = new DigitalInput(1);
+		elevatorTopLimit = new DigitalInput(0);
+		toteSwitch = new DigitalInput(2);
+		gyro = new Gyro(0);
+		accelerometer = new BuiltInAccelerometer();
+		rangeFinder = new AnalogInput(1);
 
-		ELEVATOR_MOTOR = new Talon(4);
-		ELEVATOR_ENCODER = new Encoder(18, 19);
+		elevatorMotor = new Talon(4);
+		elevatorEncoder = new Encoder(18, 19);
 
-		GRABBER_MOTOR = new CanTalonSRX(0);
+		grabberMotor = new CanTalonSRX(0);
 
 		oi = new OI();
 
