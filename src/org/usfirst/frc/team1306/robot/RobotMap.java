@@ -66,14 +66,6 @@ public class RobotMap {
 	public static Elevator elevator;
 
 	static void init() {
-		/*
-		 * DRIVE_FRONT_LEFT = new PIDMotor(new Talon(0),
-		 * DRIVE_FRONT_LEFT_ENCODER); DRIVE_REAR_LEFT = new PIDMotor(new
-		 * Talon(1), DRIVE_REAR_LEFT_ENCODER); DRIVE_FRONT_RIGHT = new
-		 * PIDMotor(new Talon(2), DRIVE_FRONT_RIGHT_ENCODER); DRIVE_REAR_RIGHT =
-		 * new PIDMotor(new Talon(3), DRIVE_REAR_RIGHT_ENCODER);
-		 */
-
 		DRIVE_FRONT_LEFT = new Talon(1);
 		DRIVE_REAR_LEFT = new Talon(3);
 		DRIVE_FRONT_RIGHT = new Talon(0);
