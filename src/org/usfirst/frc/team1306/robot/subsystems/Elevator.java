@@ -35,7 +35,7 @@ public class Elevator extends PIDSubsystem {
 		getPIDController().setContinuous(false);
 		setInputRange(0.0, 18000.0); // range of encoder values
 		setOutputRange(-1.0, 1.0); // range of motor speeds
-		setAbsoluteTolerance(100.0); // tolerance in encoder ticks
+		setAbsoluteTolerance(TOLERANCE); // tolerance in encoder ticks
 
 		SmartDashboard.putData("Elevator PID", getPIDController());
 
@@ -130,4 +130,13 @@ public class Elevator extends PIDSubsystem {
 		}
 		return hit;
 	}
+	
+	public boolean isStopped() {
+		return Math.abs(RobotMap.ELEVATOR_ENCODER.getRate()) < SPEED_TOLERANCE;
+	}
+	
+	//The maximum distance (in mm) that the encoder can be from its target and still be considered on target
+	public static final double TOLERANCE = 5.0;
+	//The maximum speed the elevator can be moving (in mm/s) and still be considered stopped
+	private static final double SPEED_TOLERANCE = 5.0;
 }

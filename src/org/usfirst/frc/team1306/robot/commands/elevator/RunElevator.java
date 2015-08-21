@@ -40,21 +40,21 @@ public class RunElevator extends Command {
 
 		height = RobotMap.elevator.getPoint();
 		String level;
-		if (height < Elevator.Level.ZERO.getHeight() - TOLERANCE) {
+		if (height < Elevator.Level.ZERO.getHeight() - Elevator.TOLERANCE) {
 			level = "<0";
-		} else if (height < Elevator.Level.ZERO.getHeight() + TOLERANCE){
+		} else if (height < Elevator.Level.ZERO.getHeight() + Elevator.TOLERANCE){
 			level = "0";
-		} else if (height < Elevator.Level.ONE.getHeight() - TOLERANCE) {
+		} else if (height < Elevator.Level.ONE.getHeight() - Elevator.TOLERANCE) {
 			level = "0-1";
-		} else if (height < Elevator.Level.ONE.getHeight() + TOLERANCE) {
+		} else if (height < Elevator.Level.ONE.getHeight() + Elevator.TOLERANCE) {
 			level = "1";
-		} else if (height < Elevator.Level.TWO.getHeight() - TOLERANCE) {
+		} else if (height < Elevator.Level.TWO.getHeight() - Elevator.TOLERANCE) {
 			level = "1-2";
-		} else if (height < Elevator.Level.TWO.getHeight() + TOLERANCE) {
+		} else if (height < Elevator.Level.TWO.getHeight() + Elevator.TOLERANCE) {
 			level = "2";
-		} else if (height < Elevator.Level.THREE.getHeight() - TOLERANCE) {
+		} else if (height < Elevator.Level.THREE.getHeight() - Elevator.TOLERANCE) {
 			level = "2-3";
-		} else if (height < Elevator.Level.THREE.getHeight() + TOLERANCE) {
+		} else if (height < Elevator.Level.THREE.getHeight() + Elevator.TOLERANCE) {
 			level = "3";
 		} else {
 			level = ">3";
@@ -85,7 +85,4 @@ public class RunElevator extends Command {
 	protected void interrupted() {
 		end();
 	}
-
-	//absolute tolerance, in encoder ticks
-	private static final int TOLERANCE = 5;
 }
