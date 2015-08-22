@@ -4,6 +4,7 @@ import org.usfirst.frc.team1306.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
@@ -12,7 +13,6 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Relay.Value;
-import edu.wpi.first.wpilibj.hal.CanTalonSRX;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 
 /**
@@ -48,7 +48,7 @@ public class RobotMap {
 	// Manipulator actuators
 	public static Talon elevatorMotor;
 	public static Encoder elevatorEncoder;
-	public static CanTalonSRX grabberMotor;
+	public static CANTalon grabberMotor;
 	public static Encoder grabberEncoder;
 
 	// Operator Interface
@@ -81,7 +81,7 @@ public class RobotMap {
 		elevatorMotor = new Talon(4);
 		elevatorEncoder = new Encoder(18, 19);
 
-		grabberMotor = new CanTalonSRX(0);
+		grabberMotor = new CANTalon(0);
 
 		oi = new OI();
 
