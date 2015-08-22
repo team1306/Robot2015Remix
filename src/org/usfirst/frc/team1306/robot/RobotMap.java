@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.subsystems.Elevator;
+import org.usfirst.frc.team1306.robot.subsystems.Grabber;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
@@ -55,6 +56,7 @@ public class RobotMap {
 	public static OI oi;
 
 	public static Elevator elevator;
+	public static Grabber grabber;
 
 	static void init() {
 		driveFrontLeft = new Talon(1);
