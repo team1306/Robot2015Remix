@@ -29,7 +29,6 @@ public class Robot extends IterativeRobot {
         // instantiate the command used for the autonomous period
         //autonomousCommand = new ExampleCommand();
 		monitorCommand = new MonitorRobot();
-		monitorCommand.start();
     }
 	
 	public void disabledPeriodic() {
@@ -61,6 +60,7 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
+    	monitorCommand.start();
     }
 
     /**
