@@ -62,8 +62,8 @@ public class OI {
 		rightBumper.whenPressed(new SnapUp());
 		leftBumper.whenPressed(new SnapDown());
 		
-		buttonA.whenPressed(new GrabberClamp());
-		buttonB.whenPressed(new GrabberRelease());
+		buttonA.whileHeld(new GrabberClamp());
+		buttonB.whileHeld(new GrabberRelease());
 	}
 
 	public double elevatorDir() {
