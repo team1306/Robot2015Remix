@@ -10,8 +10,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class GrabberClamp extends Command {
-	
-	private double beginning;
 
     public GrabberClamp() {
     	requires(RobotMap.grabber);
@@ -19,7 +17,6 @@ public class GrabberClamp extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	beginning = Timer.getFPGATimestamp();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -29,13 +26,12 @@ public class GrabberClamp extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        // return RobotMap.grabber.isClamped();
-    	return false;
+        return RobotMap.grabber.isClamped();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	SmartDashboard.putNumber("talon enc", RobotMap.grabberMotor.getAnalogInPosition());
+    	SmartDashboard.putNumber("talon enc", RobotMap.grabberMotor.getPosition());
     	RobotMap.grabber.stop();
     }
 
