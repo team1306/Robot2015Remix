@@ -123,11 +123,7 @@ public class Elevator extends PIDSubsystem {
 	 * @return true if at bottom limit
 	 */
 	public boolean hitBottom() {
-		boolean hit = !RobotMap.elevatorBottomLimit.get();
-		if (hit) {
-			RobotMap.elevatorEncoder.reset();
-		}
-		return hit;
+		return !RobotMap.elevatorBottomLimit.get();
 	}
 
 	public boolean isStopped() {
