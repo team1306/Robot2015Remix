@@ -2,6 +2,7 @@ package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.elevator.SnapDown;
 import org.usfirst.frc.team1306.robot.commands.elevator.SnapUp;
+import org.usfirst.frc.team1306.robot.commands.grabber.GrabberClamp;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -45,6 +46,7 @@ public class OI {
 	private final XboxController xbox;
 	
 	private final Button rightBumper, leftBumper;
+	private final Button buttonA, buttonB;
 
 	public OI() {
 		xbox = new XboxController(0);
@@ -52,8 +54,15 @@ public class OI {
 		rightBumper = new JoystickButton(xbox, XboxController.RB);
 		leftBumper = new JoystickButton(xbox, XboxController.LB);
 		
+		buttonA = new JoystickButton(xbox, XboxController.A);
+		buttonB = new JoystickButton(xbox, XboxController.B);
+		
 		rightBumper.whenPressed(new SnapUp());
 		leftBumper.whenPressed(new SnapDown());
+		
+		buttonA.whenPressed(new GrabberClamp());
+		// for once we've written it
+		// buttonB.whenPressed(new GrabberRelease());
 	}
 
 	public double elevatorDir() {
