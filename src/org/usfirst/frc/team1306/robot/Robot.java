@@ -1,7 +1,10 @@
 
 package org.usfirst.frc.team1306.robot;
 
+import org.usfirst.frc.team1306.robot.commands.MonitorRobot;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -15,6 +18,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
     //Command autonomousCommand;
+	Command monitorCommand;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -24,6 +28,8 @@ public class Robot extends IterativeRobot {
 		RobotMap.init();
         // instantiate the command used for the autonomous period
         //autonomousCommand = new ExampleCommand();
+		monitorCommand = new MonitorRobot();
+		monitorCommand.start();
     }
 	
 	public void disabledPeriodic() {
@@ -55,7 +61,6 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
-
     }
 
     /**
