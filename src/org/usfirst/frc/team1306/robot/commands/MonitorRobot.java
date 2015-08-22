@@ -22,6 +22,8 @@ public class MonitorRobot extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	SmartDashboard.putNumber("Elevator Height", RobotMap.elevatorEncoder.getDistance());
+    	SmartDashboard.putNumber("Dart Position", RobotMap.grabberMotor.getPosition());
+    	SmartDashboard.putNumber("Dart Setpoint", RobotMap.grabberMotor.getSetpoint());
     }
 
     // Make this return true when this Command no longer needs to run execute()
