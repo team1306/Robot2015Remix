@@ -87,8 +87,10 @@ public class RobotMap {
 
 		grabberMotor = new CANTalon(0);
 
-		oi = new OI();
-
 		elevator = new Elevator();
+		grabber = new Grabber();
+		drivetrainSystem = new MecanumDrive();
+		
+		oi = new OI();
 	}
 }
