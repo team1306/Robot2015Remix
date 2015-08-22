@@ -33,6 +33,10 @@ public class Grabber extends Subsystem {
     	return RobotMap.toteSwitch.get();
     }
     
+    public boolean isReleased() {
+    	return RobotMap.grabberMotor.isRevLimitSwitchClosed();
+    }
+    
     public void stop() {
     	RobotMap.grabberMotor.set(0.0);
     }

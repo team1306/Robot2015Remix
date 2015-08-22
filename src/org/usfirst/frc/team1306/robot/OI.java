@@ -3,6 +3,7 @@ package org.usfirst.frc.team1306.robot;
 import org.usfirst.frc.team1306.robot.commands.elevator.SnapDown;
 import org.usfirst.frc.team1306.robot.commands.elevator.SnapUp;
 import org.usfirst.frc.team1306.robot.commands.grabber.GrabberClamp;
+import org.usfirst.frc.team1306.robot.commands.grabber.GrabberRelease;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -61,8 +62,7 @@ public class OI {
 		leftBumper.whenPressed(new SnapDown());
 		
 		buttonA.whenPressed(new GrabberClamp());
-		// for once we've written it
-		// buttonB.whenPressed(new GrabberRelease());
+		buttonB.whenPressed(new GrabberRelease());
 	}
 
 	public double elevatorDir() {
