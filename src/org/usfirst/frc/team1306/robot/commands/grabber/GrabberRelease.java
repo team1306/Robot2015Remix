@@ -2,12 +2,16 @@ package org.usfirst.frc.team1306.robot.commands.grabber;
 
 import org.usfirst.frc.team1306.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class GrabberRelease extends Command {
+	
+	private double beginning;
 
     public GrabberRelease() {
         requires(RobotMap.grabber);
@@ -15,6 +19,8 @@ public class GrabberRelease extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	SmartDashboard.putNumber("talon enc", RobotMap.grabberMotor.getAnalogInPosition());
+    	beginning = Timer.getFPGATimestamp();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -24,7 +30,8 @@ public class GrabberRelease extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return RobotMap.grabber.isReleased();
+        // return RobotMap.grabber.isReleased();
+    	return Timer.getFPGATimestamp() - beginning > 0.5;
     }
 
     // Called once after isFinished returns true
