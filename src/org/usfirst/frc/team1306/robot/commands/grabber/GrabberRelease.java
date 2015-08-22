@@ -19,7 +19,6 @@ public class GrabberRelease extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	SmartDashboard.putNumber("talon enc", RobotMap.grabberMotor.getAnalogInPosition());
     	beginning = Timer.getFPGATimestamp();
     }
 
@@ -31,11 +30,12 @@ public class GrabberRelease extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         // return RobotMap.grabber.isReleased();
-    	return Timer.getFPGATimestamp() - beginning > 0.1;
+    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	SmartDashboard.putNumber("talon enc", RobotMap.grabberMotor.getAnalogInPosition());
     	RobotMap.grabber.stop();
     }
 
