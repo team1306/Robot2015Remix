@@ -22,11 +22,11 @@ public class Grabber extends Subsystem {
     }
     
     public void clamp() {
-    	RobotMap.grabberMotor.set(1.0);
+    	RobotMap.grabberMotor.set(-1.0);
     }
     
     public void release() {
-    	RobotMap.grabberMotor.set(-1.0);
+    	RobotMap.grabberMotor.set(1.0);
     }
     
     public boolean isClamped() {
