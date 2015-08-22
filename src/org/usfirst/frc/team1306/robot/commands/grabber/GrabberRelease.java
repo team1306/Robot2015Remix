@@ -31,7 +31,6 @@ public class GrabberRelease extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	SmartDashboard.putNumber("talon enc", RobotMap.grabberMotor.getAnalogInPosition());
     	RobotMap.grabber.stop();
     }
 
