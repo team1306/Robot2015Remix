@@ -31,7 +31,7 @@ public class GrabberRelease extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         // return RobotMap.grabber.isReleased();
-    	return Timer.getFPGATimestamp() - beginning > 0.5;
+    	return Timer.getFPGATimestamp() - beginning > 0.1;
     }
 
     // Called once after isFinished returns true
