@@ -10,19 +10,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class Elevator extends PIDSubsystem {
-	
+
 	public enum Level {
-		ZERO(0),
-		ONE(200),
-		TWO(400),
-		THREE(600);
-		
+		ZERO(0), ONE(200), TWO(400), THREE(600);
+
 		private int height;
-		
+
 		private Level(int height) {
 			this.height = height;
 		}
-		
+
 		public int getHeight() {
 			return height;
 		}
@@ -63,7 +60,7 @@ public class Elevator extends PIDSubsystem {
 		}
 		RobotMap.elevatorMotor.set(-output);
 	}
-	
+
 	public void goTo(Level level) {
 		switch (level) {
 		case ZERO:
@@ -88,7 +85,7 @@ public class Elevator extends PIDSubsystem {
 		} else {
 			disable();
 			setSetpoint(getPoint());
-			
+
 			if (!(hitTop() && speed > 0 || hitBottom() && speed < 0))
 				RobotMap.elevatorMotor.set(-speed);
 		}
@@ -130,13 +127,15 @@ public class Elevator extends PIDSubsystem {
 		}
 		return hit;
 	}
-	
+
 	public boolean isStopped() {
 		return Math.abs(RobotMap.elevatorEncoder.getRate()) < SPEED_TOLERANCE;
 	}
-	
-	//The maximum distance (in mm) that the encoder can be from its target and still be considered on target
+
+	// The maximum distance (in mm) that the encoder can be from its target and
+	// still be considered on target
 	public static final double TOLERANCE = 5.0;
-	//The maximum speed the elevator can be moving (in mm/s) and still be considered stopped
+	// The maximum speed the elevator can be moving (in mm/s) and still be
+	// considered stopped
 	private static final double SPEED_TOLERANCE = 5.0;
 }
