@@ -43,6 +43,7 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 
 	private static final double DEADBAND = 0.15;
+	private static final double PRECISION_SPEED = 0.25;
 
 	private final XboxController xbox;
 	
@@ -67,6 +68,39 @@ public class OI {
 
 	public double elevatorDir() {
 		return xbox.getRT() - xbox.getLT();
+	}
+	
+	/**
+	 * Returns the direction to be moved in the x-axis based on the displacement
+	 * in the x-axis of the left hand joystick.
+	 * 
+	 * @return X component of movement
+	 */
+	public double moveX() {
+		double multiplier = 1.0 - (1.0 - PRECISION_SPEED) * xbox.getLT();
+		return multiplier * deadband(xbox.getX(Hand.kLeft));
+	}
+
+	/**
+	 * Returns the direction to be moved in the y-axis based on the displacement
+	 * in the y-axis of the left hand joystick.
+	 * 
+	 * @return Y component of movement
+	 */
+	public double moveY() {
+		double multiplier = 1.0 - (1.0 - PRECISION_SPEED) * xbox.getLT();
+		return multiplier * deadband(xbox.getY(Hand.kLeft));
+	}
+	
+	/**
+	 * Returns the amount of rotation specified by the movement in the x-axis of
+	 * the right hand joystick.
+	 * 
+	 * @return Amount of rotation
+	 */
+	public double rotation() {
+		double multiplier = 1.0 - (1.0 - PRECISION_SPEED) * xbox.getRT();
+		return multiplier * deadband(xbox.getX(Hand.kRight));
 	}
 	
 	/**
