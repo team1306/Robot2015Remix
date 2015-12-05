@@ -38,6 +38,5 @@ public class GrabberClamp extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	end();
-    	// this is a test commit
     }
 }
